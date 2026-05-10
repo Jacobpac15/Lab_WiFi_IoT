@@ -1,5 +1,10 @@
 # Aprovisionamiento de Red WiFi con ESP32
 
+Integrantes:
+* Jacobo Pacheco
+* David Casas
+* Yuly Rodríguez
+
 ##  Descripción del taller
 Este taller implementa una solución IoT basada en el microcontrolador **ESP32** que permite la configuración dinámica de una red WiFi sin necesidad de reprogramar el dispositivo.
 
