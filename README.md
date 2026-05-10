@@ -40,6 +40,8 @@ El sistema crea un **Access Point (AP)** cuando no existen credenciales guardada
 8. El dispositivo reinicia
 9. Se conecta automáticamente a la red configurada
 
+![Diagrama](Diagrama.png)
+
 ---
 
 ## Endpoints
