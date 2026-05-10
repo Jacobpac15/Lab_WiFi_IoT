@@ -134,6 +134,11 @@ El sistema permite borrar la configuración mediante:
 - (Opcional) botón físico
 
 ---
+## Evidencia de práctica
+
+![Diagrama](configurar_wifi.jpeg)
+
+![Conectado existosamente](configurado.jpeg)
 
 ##  Validación funcional
 
@@ -150,9 +155,3 @@ El sistema permite borrar la configuración mediante:
 
 ---
 
-## Preguntas de situación
-- ¿Es posible conectarse a redes WIFI con seguridad PEAP Enterprise con el ESP32? ¿Qué se necesita?
-Es posible, aunque es un poco más complejo. Pues se trata de una red a la que no se accede por una contraseña compartida, sino con unas credenciales a travez de un servidor RADIUS. Para eso, con la ESP32 necesitamos tener la librería "esp_wpa2.h"; además de que, con la red, será necesario tener un usuario, contraseña, certificado CA del servidor RADIUS (opcional pero recomendado para validar el servidor), y una identidad anónima (si la red la requiere). 
-
-- ¿Cuántas conexiones/clientes simultáneos soporta la librería WebServer? ¿Qué alternativas hay?
-El máximo de sockets abiertos en la ESP32 es 13, pero la librería "WebServer" en la práctica es mucho más restrictiva porque bloquea el hilo mientras atiende cada petición. Si llega una segunda solicitud mientras atiende la primera, simplemente espera. Esto la hace inadecuada para más de 1 a 2 clientes simultáneos reales.
