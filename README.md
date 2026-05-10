@@ -153,6 +153,7 @@ El sistema permite borrar la configuración mediante:
 ### Escenario 3: Error de conexión
 - ESP32 vuelve a modo AP
 
+## Preguntas de situación
 
 ¿Es posible conectarse a redes WIFI con seguridad PEAP Enterprise con el ESP32? ¿Qué se necesita? Es posible, aunque es un poco más complejo. Pues se trata de una red a la que no se accede por una contraseña compartida, sino con unas credenciales a travez de un servidor RADIUS. Para eso, con la ESP32 necesitamos tener la librería "esp_wpa2.h"; además de que, con la red, será necesario tener un usuario, contraseña, certificado CA del servidor RADIUS (opcional pero recomendado para validar el servidor), y una identidad anónima (si la red la requiere).
 
