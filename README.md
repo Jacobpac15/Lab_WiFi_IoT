@@ -155,9 +155,24 @@ El sistema permite borrar la configuración mediante:
 
 ## Preguntas de situación
 
-¿Es posible conectarse a redes WIFI con seguridad PEAP Enterprise con el ESP32? ¿Qué se necesita? Es posible, aunque es un poco más complejo. Pues se trata de una red a la que no se accede por una contraseña compartida, sino con unas credenciales a travez de un servidor RADIUS. Para eso, con la ESP32 necesitamos tener la librería "esp_wpa2.h"; además de que, con la red, será necesario tener un usuario, contraseña, certificado CA del servidor RADIUS (opcional pero recomendado para validar el servidor), y una identidad anónima (si la red la requiere).
+## ¿Es posible conectarse a redes WIFI con seguridad PEAP Enterprise con el ESP32? ¿Qué se necesita?
+Es posible, aunque es un poco más complejo. Pues se trata de una red a la que no se accede por una contraseña compartida, sino con unas credenciales a travez de un servidor RADIUS. Para eso, con la ESP32 necesitamos tener la librería "esp_wpa2.h"; además de que, con la red, será necesario tener un usuario, contraseña, certificado CA del servidor RADIUS (opcional pero recomendado para validar el servidor), y una identidad anónima (si la red la requiere).
 
-¿Cuántas conexiones/clientes simultáneos soporta la librería WebServer? ¿Qué alternativas hay? El máximo de sockets abiertos en la ESP32 es 13, pero la librería "WebServer" en la práctica es mucho más restrictiva porque bloquea el hilo mientras atiende cada petición. Si llega una segunda solicitud mientras atiende la primera, simplemente espera. Esto la hace inadecuada para más de 1 a 2 clientes simultáneos reales.
+## ¿Cuántas conexiones/clientes simultáneos soporta la librería WebServer? ¿Qué alternativas hay? 
+El máximo de sockets abiertos en la ESP32 es 13, pero la librería "WebServer" en la práctica es mucho más restrictiva porque bloquea el hilo mientras atiende cada petición. Si llega una segunda solicitud mientras atiende la primera, simplemente espera. Esto la hace inadecuada para más de 1 a 2 clientes simultáneos reales.
+
+## Comparar la cantidad de memoria Flash usada por su implementación contra el ejemplo "Basic" de la librería WiFiManager.
+- Nuestra implementación
+938112 bytes (71%) — programa
+46976 bytes  (14%) — variables globales
+
+- Ejemplo Básico de WifiManager
+1020872 bytes (77%) — programa
+46752 bytes  (14%) — variables globales
+
+- Análisis
+Se puede evidenciar incremento de uso de memoria con el ejemplo básico de WifiManager. Esto sucede debido a que esta arrastra a otras librerías internamente. Maneja el DNS server, la lógica del portal cautivo, y la detección automática en distintos sistemas operativos. Lo cual ocupa más memoria al guardar el programa.
+
+Por otro lado, la diferencia de uso de RAM (las variables globales) es mínima (casi imperceptible). Ya que ambas formas de Wifi usan las mismas estructuras de datos en RAM.
 
 ---
-
